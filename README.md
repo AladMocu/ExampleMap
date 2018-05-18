@@ -5,7 +5,7 @@ This is a simple example repo about the use of JxMaps
    
   - [Library Buy Page]( https://www.teamdev.com/jxmaps)
    
-   - [JxMaps API](https://www.teamdev.com/downloads/jxmaps/docs/index.html)
+   - [JxMaps API](https://www.teamdev.com/downloads/jxmaps/docs/com/teamdev/jxmaps/package-frame.html)
 
 
 
