@@ -39,7 +39,7 @@ public class Mapa extends MapView{
 
 	/**
 	 * Generate a marker on the LatLongPoint
-	 * @param pos2 of the wanted marker
+	 * @param pos of the wanted marker
 	 * @return Marker
 	 */
 	public Marker generateMarker(LatLng pos)
@@ -95,7 +95,7 @@ public class Mapa extends MapView{
 	/**
 	 * Generate a line on the Map on the selected breakpoints
 	 * @param markers  do you wanna put a marker on each vertex 
-	 * @param path
+	 * @param path Group of points of the Line
 	 */
 	public void GenerateLine(boolean markers,LatLng... path)
 	{
