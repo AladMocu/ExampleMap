@@ -10,14 +10,21 @@ import com.teamdev.jxmaps.*;
 
 public class Mapa extends MapView{
 	
-
+/**
+ * The map object
+ */
 	private static Map map;
 
-
+/**
+ * Editable circle options 
+ */
 	private CircleOptions settingsCircle;
-
+/**
+ * Editable LineOptions
+ */
 	private  PolylineOptions settingsLine;
 
+	
 	public CircleOptions getSettingsCircle() {
 		return settingsCircle;
 	}
@@ -31,32 +38,38 @@ public class Mapa extends MapView{
 
 
 	/**
-	 * Genera un marcador en la posicion que llega por parametro
-	 * @param pos poscicion deseada para el marcador
-	 * @return marcador creado
+	 * Generate a marker on the LatLongPoint
+	 * @param pos2 of the wanted marker
+	 * @return Marker
 	 */
-	public Marker generateMarker(LatLng pos,Map pMap)
+	public Marker generateMarker(LatLng pos)
 	{
 		Marker marker=null;
 	
 			
-			 marker = new Marker(pMap);
+			 marker = new Marker(map);
 			marker.setPosition(pos);
-			pMap.setCenter(pos);
+			map.setCenter(pos);
 	
 		System.out.println("Graficado marker");
 		return marker;
 	}
 
-	public void generateSimplePath(LatLng start,LatLng end,Boolean markers,Map pMap)
+	/**
+	 * Generate a simple nibe between two LatLong points
+	 * @param start Start point of the line
+	 * @param end End point of the line
+	 * @param markers Do you wanna put a marker on the LatLong points
+	 */
+	public void generateSimplePath(LatLng start,LatLng end,Boolean markers)
 	{
 		LatLng[] path = {start,end};
-		Polyline polyline = new Polyline(pMap);
+		Polyline polyline = new Polyline(map);
 		polyline.setPath(path);
 		if(markers)
 		{
-			generateMarker(start,pMap);
-			generateMarker(end,pMap);
+			generateMarker(start);
+			generateMarker(end);
 		}
 	}
 
@@ -66,13 +79,13 @@ public class Mapa extends MapView{
 	}
 
 	/**
-	 * 
-	 * @param center
-	 * @param radiusen en metros
+	 * Generate a circle area on the map
+	 * @param center LatLong of the center of the map
+	 * @param radius on meters
 	 */
-	public void generateArea(LatLng center,Double radius,Map pMap)
+	public void generateArea(LatLng center,Double radius)
 	{
-		Circle circle = new Circle(pMap);
+		Circle circle = new Circle(map);
 		circle.setCenter(center);
 		circle.setRadius(radius);
 		circle.setVisible(true);
@@ -80,23 +93,27 @@ public class Mapa extends MapView{
 	}
 
 	/**
-	 * 
-	 * @param markers colocar marcadores en cada punto de la linea
+	 * Generate a line on the Map on the selected breakpoints
+	 * @param markers  do you wanna put a marker on each vertex 
 	 * @param path
 	 */
-	public void GenerateLine(boolean markers,Map pMap,LatLng... path)
+	public void GenerateLine(boolean markers,LatLng... path)
 	{
 		if(markers)
 		{
 			for(LatLng p:path)
 			{
-				generateMarker(p,pMap);
+				generateMarker(p);
 			}
 		}
-		Polyline polyline = new Polyline(pMap);
+		Polyline polyline = new Polyline(map);
 		polyline.setPath(path);
 	}
 
+	/**
+	 * Create a new Map panel whit the param Name
+	 * @param pString Name for the map
+	 */
 	public Mapa(String pString) {
 
 		JFrame frame = new JFrame("Chicago-Data: "+pString);
@@ -157,6 +174,7 @@ public class Mapa extends MapView{
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		final Mapa example = new Mapa("test");
+		example.generateMarker(map.getCenter());
 		
 	
 
